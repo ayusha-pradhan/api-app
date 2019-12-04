@@ -1,26 +1,93 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+// import PostForm from './PostForm';
+import Selected from './Selected';
+import PersonInput from './personInput';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state ={
+        persons : [],
+        name :''
+
+    }
+    
+} 
+
+
+componentDidMount() {
+  
+//   const response = await axios.get(`https://jsonplaceholder.typicode.com/users`)
+//  const persons = response.data
+//  this.setState({persons: persons})
+      
+  axios.get(`https://jsonplaceholder.typicode.com/users`)
+  .then(res => {
+            console.log(res);
+            this.setState({
+              persons:res.data
+            });
+          })
+         
+          
+      }
+      toggleTodo = (id) => {
+          // debugger;
+         this.setState({
+           persons:this.state.persons.filter((person)=>person.id === id )})
+           console.log(this.state.persons)
+      }
+
+      filterSelected = (id) => {
+        const persons=this.state.persons.filter(person => person.id === id)
+        this.setState(
+          {persons:persons}
+        )
+      }
+
+      updateTodo = (id) => {
+        debugger;
+         const persons = this.state.persons.map((a) =>
+        {
+             if (a.id === id){
+                 return{
+                     ...a,
+                     username: a.username          
+                 }
+                }
+             else{
+                 return a;
+             }
+         }
+        );
+        
+         this.setState({persons:persons})
+         console.log(persons)
+        }
+  
+  render(){
+        const {persons,name} = this.state;
+      return (
+        <React.Fragment>
+            <h2>Random User</h2>
+            {/* <PostForm persons={persons} username={username}/> */}
+            <PersonInput persons={persons}name={name}/>
+      <div >
+      {persons.map(person=><div key={person.id} onClick={() => this.filterSelected(person.id) }>{person.username}</div>)}
+       
+      </div>
+      <br/>
+     <div>
+     <Selected persons= {persons} />
+       {/* {this.state.persons.map(person =>{
+       return <Selected persons= {()=>this.filterSelected(person.id)} />}
+       )} */}
+       </div>
+      </React.Fragment>
+      );
+    }
+  }
 
 export default App;
