@@ -19,7 +19,7 @@ render(){
                     {person.username}
                 </div>
                                
-            
+             
                 )}
                 )}
         </div>

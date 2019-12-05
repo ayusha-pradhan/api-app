@@ -34,17 +34,19 @@ componentDidMount() {
           
       }
       toggleTodo = (id) => {
-          // debugger;
+           debugger;
          this.setState({
            persons:this.state.persons.filter((person)=>person.id === id )})
            console.log(this.state.persons)
       }
 
       filterSelected = (id) => {
+        debugger;
         const persons=this.state.persons.filter(person => person.id === id)
         this.setState(
           {persons:persons}
         )
+        console.log(persons)
       }
 
       updateTodo = (id) => {

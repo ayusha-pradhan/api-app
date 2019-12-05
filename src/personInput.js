@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 
 export default class PersonInput extends React.Component {
-  // state = {
-  //   name: '',
-  // }
+  state = {
+    name: '',
+  }
 
   handleChange = event => {
     this.setState({ name: event.target.value });
@@ -13,18 +13,13 @@ export default class PersonInput extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 debugger;
-    const data = {name: this.props.name};
+    const data = {name: this.state.name};
 
     axios.post(`https://jsonplaceholder.typicode.com/users`, {data})
       .then(res => {
         console.log(res);
         console.log(res.data);
-        this.props.persons.concat(res.data);
-                this.setState({name: this.props.name});
-        // this.setState({
-        //   persons:res.data
-        // });
-        // console.log(this.persons);
+        
         
       })
   }
