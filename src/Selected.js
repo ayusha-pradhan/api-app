@@ -4,27 +4,43 @@ export default class Selected extends React.Component{
 
     
 render(){
-
-    const {persons}=this.props;
+    
+    const {select}=this.props;
     return(
         
-        <div>
-            {/* {persons.username} */}
-            {persons.map((person) =>
+        select.map((person)=>{
+        // debugger
+            return(
+                (person.username)?
+                    <div key={person.id}>
+                        Username:{person.username}
+                        {/* Email:{person.email} */}
+                    </div>
+                
+                :
+                <></>
+                
+            )
             
-           {
-                return(
-               
-                <div>
-                    {person.username}
-                </div>
-                               
-             
-                )}
-                )}
-        </div>
-
+        })
     )
 }
-
 }
+
+//     const {persons}=this.props;
+//     return(
+//         persons.map((person)=>{
+//         return(
+//             if(person.id===id){
+//                 return(<div>{person.username}</div>)
+//              }
+//              else{
+//                  return <div></div>
+//              }
+//         ))
+    
+        
+               
+        
+
+//     )}
