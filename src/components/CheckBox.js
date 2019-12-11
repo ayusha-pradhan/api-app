@@ -8,21 +8,24 @@ render(){
     
     return (
                  <div >
-                    <label>
+                    <label className='checkBox'>
                         
                     <input
+                        
                         type="checkbox"
-                        persons={persons}
-                        checked={persons.username}
-                        onChange={()=>this.filterSelected(persons.username)}
+                        value={persons}
+                        //checked={}
+                        onChange={()=>this.props.filterSelected(persons.username)}
+                        // onChange={()=>this.props.checkSelect()}
                     />
                     {persons}
                     </label>               
                 </div>
             );
 }
-filterSelected = (persons)=>{
-this.props.filterSelected(persons);
+// filterSelected = (persons)=>{
+//     debugger;
+// this.props.filterSelected(persons);
 
-}
+// }
 }

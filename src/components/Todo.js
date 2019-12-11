@@ -1,20 +1,29 @@
 import React from 'react';
-
+import CheckBox from './CheckBox';
 
 export default class Todo extends React.Component{
 
  render(){
         const {persons}=this.props
         return(
-             <div>
-                {persons.map(person=><div key={person.id} onClick={() => this.filterSelected(person.id) }>Username:{person.username},Email:{person.email}</div>)}
-                
-            </div>
+            
+                 <div className="checkbox-list">
+                    {persons.map((person,index) =>
+                    {return(
+                    <CheckBox filterSelected={()=> this.props.filterSelected(person.username)} 
+                    // checkSelect={()=> this.props.checkSelect()}
+                    key={index} 
+                    persons={person.username}
+                    />
+                    )
+                    }
+                    )}
+                </div>
             );
                
         }
 
-    filterSelected = (persons)=>{
-    this.props.filterSelected(persons);
-}   
+//     filterSelected = (persons)=>{
+//     this.props.filterSelected(persons);
+// }   
 }

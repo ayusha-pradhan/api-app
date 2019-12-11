@@ -1,4 +1,5 @@
 import React from "react";
+import '/home/evolve/api-app/src/App.css';
 
 export default class Selected extends React.Component{
 
@@ -13,8 +14,8 @@ render(){
             return(
                 (person.username)?
                     <div key={person.id}>
-                        Username:{person.username}
-                        {/* Email:{person.email} */}
+                       <div className='user-name'> {person.username}</div>
+                       <div className='email'> {person.email}</div>
                     </div>
                 
                 :
